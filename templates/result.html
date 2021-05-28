@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.1/chart.min.js" integrity="sha512-tOcHADT+YGCQqH7YO99uJdko6L8Qk5oudLN6sCeI4BQnpENq6riR6x9Im+SGzhXpgooKBRkPsget4EOoH5jNCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+	<title>Results</title>
+</head>
+<body>
+
+<div class="container center">
+	<h4 style="text-align:left">Simple Representation</h4>
+    <div class="row">
+        <div class="col-md-10 mx-auto" >
+            <div class="card card-style mb-2">
+                <div class="card-body">
+                    <div class="chart-container center  " style="position: relative;">
+                         <h4>Total Vote List</h4>
+							<h5>
+							{% for i in data| sort() %}
+								{% if  loop.last %}
+									<div class="badge bg-primary " style="width: 15rem;">
+									  {{  i[0] }} - {{  i[1] }}
+									</div><br>
+								{% else %}
+									<div class="badge bg-secondary " style="width: 15rem;">
+									  {{  i[0] }} - {{  i[1] }}
+									</div><br>
+								{% endif %}
+							{% endfor %}
+							</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ----------------------------------------------------------- -->
+
+
+<div class="container-fluid card card-body center ">	
+	<div class="container">
+		<h4 style="text-align:left">Graphical Representation</h4>
+	    <div class="row">
+	        <div class="col-md-10 mx-auto" >
+	            <div class="card card-style mb-2">
+	                <div class="card-body">
+	                    <div class="chart-container center  " style="position: relative;">
+	                         <h2 style="text-align:center">Opinion Polling</h2>
+	                         <canvas id="myChart"></canvas>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+{% set lst1 = [] %}
+{% for i in data| sort() %}
+{{ lst1.append(i.1) }}
+{% endfor %}
+{{ lst1 |join(',') }}
+
+<!-- ------------------------------- -->
+
+{% set lst = [] %}
+{% for i in data| sort() %}
+{{ lst.append(i.0) }}
+{% endfor %}
+{{ lst |join(',') }}
+
+
+
+
+
+</body>
+</html>
+
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        labels: [ '{{lst1[0]}}' , '{{lst1[1]}}', '{{lst1[2]}}', '{{lst1[3]}}'],
+        datasets: [{
+            label: '# of Votes',
+            
+             data: [ {{ lst[0] }}, {{ lst[1] }} , {{ lst[2] }} , {{ lst[3] }} ],
+            
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>

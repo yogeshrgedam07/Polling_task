@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>
+    	Opinion Polling
+    </title>
+</head>
+<body>
+	<div class="container-fluid card card-body center" >
+			<form method="POST" action="/result">
+				  <p><b><h3>Who is your favorite author?</h3></b></p>
+				  <div class="form-check">
+					  <input class="form-check-input" type="radio" name="author"  value="Miguel de Cervantes" >
+					  <label for="Miguel de Cervantes">Miguel de Cervantes</label><br>
+				  </div>
+				  <div class="form-check">
+					  <input class="form-check-input" type="radio" name="author"  value="Charles Dickens">
+					  <label for="Charles Dickens">Charles Dickens</label><br>
+				  </div>
+				  <div class="form-check">
+					  <input class="form-check-input" type="radio" name="author"  value="J.R.R. Tolkien" >
+					  <label for="J.R.R. Tolkien">J.R.R. Tolkien</label><br>
+				  </div>
+				  <div class="form-check">
+					  <input class="form-check-input" type="radio" name="author"  value="Antoine de Saint-Exuper">
+					  <label for="Antoine de Saint-Exuper">Antoine de Saint-Exuper</label><br><br>
+				  </div>
+				  <div class="">
+				  	  <input type="submit" onClick="alert('Vote is Successfully added')" class="btn btn-primary" name="Submit" value="Vote"><br>
+				  </div>
+			  
+			</form>
+			<div class="">
+				<form action="/output", method="POST">
+					<br><input type="Submit" class="btn btn-primary" name="Submit" value="View total Votes">
+				</form>
+			</div>
+		
+
+	</div>	
+</body>
+</html>
