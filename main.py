@@ -12,7 +12,7 @@ def index():
 def result():
 	if request.method == "POST":
 		authors = request.form['author']
-		con = pm.connect('localhost', 'root', 'admin', 'polling')
+		con = pm.connect('localhost', 'root', '', 'polling')
 		cursor = con.cursor()
 		query = "insert into user_author values('%s')" % (authors)
 		cursor.execute(query) 
@@ -25,7 +25,7 @@ def result():
 
 @app.route('/output', methods=['GET', 'POST'])
 def view():
-	con = pm.connect('localhost', 'root', 'admin', 'polling')
+	con = pm.connect('localhost', 'root', '', 'polling')
 	cursor = con.cursor()
 	query = "Select count(authors), authors from user_author group by authors"
 	cursor.execute(query)
