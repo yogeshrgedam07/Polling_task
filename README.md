@@ -1,7 +1,7 @@
 # Polling_task using Python Flask Framework.
 
 required python libraries are:
-  - pip install Flask //run command on terminal
+  - pip install Flask                //run command on terminal
   - pip install PyMySQL
   
 creating database:
